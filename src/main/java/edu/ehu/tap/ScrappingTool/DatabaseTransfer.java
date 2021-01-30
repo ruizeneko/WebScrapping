@@ -29,26 +29,28 @@ public class DatabaseTransfer {
     }
 
     public void connectionAndInsertion(InformacionEnvio infoEnvio) throws IllegalAccessException {
-        try (Connection connection = DriverManager.getConnection(dbUrl, username, password)) {
-            java.sql.Timestamp envio = new java.sql.Timestamp(infoEnvio.getFechaEnvio().getTime());
-            java.sql.Timestamp entrega = new java.sql.Timestamp(infoEnvio.getFechaEntrega().getTime());
+        if (infoEnvio.getFechaEnvio() != null && infoEnvio.getFechaEntrega() != null && infoEnvio.getLugarEntrega() != null
+                && infoEnvio.getLugarEnvio() != null) {
+            try (Connection connection = DriverManager.getConnection(dbUrl, username, password)) {
+                java.sql.Timestamp envio = new java.sql.Timestamp(infoEnvio.getFechaEnvio().getTime());
+                java.sql.Timestamp entrega = new java.sql.Timestamp(infoEnvio.getFechaEntrega().getTime());
 
+                String query = " insert into " + dbName + "(gen_albaran, gen_fecha_envio, gen_lugar_envio, gen_fecha_entrega, gen_lugar_entrega)"
+                        + " values(?, ?, ?, ?, ?);";
 
-            String query = " insert into "+dbName+"(gen_albaran, gen_fecha_envio, gen_lugar_envio, gen_fecha_entrega, gen_lugar_entrega)"
-                    + " values(?, ?, ?, ?, ?);";
+                PreparedStatement preparedStmt = connection.prepareStatement(query);
+                // create the mysql insert preparedstatement
+                preparedStmt.setString(1, infoEnvio.getNumeroAlbaran());
+                preparedStmt.setTimestamp(2, envio);
+                preparedStmt.setString(3, infoEnvio.getLugarEnvio());
+                preparedStmt.setTimestamp(4, entrega);
+                preparedStmt.setString(5, infoEnvio.getLugarEntrega());
 
-            PreparedStatement preparedStmt = connection.prepareStatement(query);
-            // create the mysql insert preparedstatement
-            preparedStmt.setString(1, infoEnvio.getNumeroAlbaran());
-            preparedStmt.setTimestamp(2, envio);
-            preparedStmt.setString(3, infoEnvio.getLugarEnvio());
-            preparedStmt.setTimestamp(4, entrega);
-            preparedStmt.setString(5, infoEnvio.getLugarEntrega());
+                preparedStmt.execute();
 
-            preparedStmt.execute();
-
-        } catch (Exception throwables) {
-            throw new IllegalAccessException(throwables.toString());
+            } catch (Exception throwables) {
+                throw new IllegalAccessException(throwables.toString());
+            }
         }
     }
 }

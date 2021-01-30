@@ -36,7 +36,7 @@ public class Scrapper{
     public InformacionEnvio scrappingTool() throws IOException, ParseException {
 
         Proxy proxy = new Proxy(Proxy.Type.HTTP,
-                new InetSocketAddress("185.198.189.21", 8080));
+                new InetSocketAddress("142.4.203.248", 3128));
 
         final Document document = Jsoup.connect(url)
                 .userAgent(userAgent)
@@ -46,6 +46,7 @@ public class Scrapper{
         Elements tableRows = document.select("tbody > tr");
 
         String termEntrega = "entregado";
+
         String termRecogida = "recogido";
         String termRecogidaAlternativo = "recoger";
 
@@ -58,7 +59,7 @@ public class Scrapper{
         Pattern regexRecogida = Pattern.compile(patternRecogida);
         Pattern regexRecogidaAlternativa = Pattern.compile(patternRecogidaAlternativa);
 
-        String dateFormatString = "dd/MM/yyyy hh:mm";
+        String dateFormatString = "dd/MM/yyyy HH:mm";
         SimpleDateFormat dateFormat = new SimpleDateFormat(dateFormatString);
 
         InformacionEnvio infoEnvio = new InformacionEnvio(numAlbaran);

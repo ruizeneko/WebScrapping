@@ -36,11 +36,12 @@ public class PipelineForScrapping extends TimerTask {
 
     @Override
     public void run() {
-        if (!randomIntGenerator().equals("NO")) {
+        String randomInt = randomIntGenerator();
+        if (!randomInt.equals("NO")) {
             try {
                 Proxy proxy = getRandomProxy();
-                Scrapper scrappingTool = new Scrapper(URL + ALBARAN_SEED + randomIntGenerator(),
-                        getRandomUseragent(), proxy,ALBARAN_SEED + randomIntGenerator());
+                Scrapper scrappingTool = new Scrapper(URL + ALBARAN_SEED + randomInt,
+                        getRandomUseragent(), proxy,ALBARAN_SEED + randomInt);
 
                 DatabaseTransfer dataTransfer = new DatabaseTransfer("jdbc:mysql://localhost:3306/TAP",
                         "root", "1512", "info_general_envio");
@@ -133,7 +134,7 @@ public class PipelineForScrapping extends TimerTask {
         } else {
             String generatedVal = String.valueOf(randomNum);
             if (generatedVal.length() == 12 - ALBARAN_SEED.length()) {
-                albaranesYaUsados.add(String.valueOf(randomNum));
+                albaranesYaUsados.add(ALBARAN_SEED + randomNum);
                 return String.valueOf(randomNum);
 
             } else {
@@ -155,9 +156,9 @@ class Main{
         pipeline = PipelineForScrapping.getInstance(
                 "C:\\tap\\ScrappingProject\\src\\main\\resources\\userAgents.txt",
                 "C:\\tap\\ScrappingProject\\src\\main\\resources\\proxiesList.txt",
-                "0330035", "https://www.mrw.es/seguimiento_envios/MRW_historico_nacional.asp?enviament=");
+                "0100927", "https://www.mrw.es/seguimiento_envios/MRW_historico_nacional.asp?enviament=");
 
         timer.schedule(pipeline, (long) (0 * 1e3),
-                (long) (1e3 * ThreadLocalRandom.current().nextInt(1, 5 + 1)));
+                (long) (1e3 * ThreadLocalRandom.current().nextInt(1, 2 + 1)));
     }
 }
