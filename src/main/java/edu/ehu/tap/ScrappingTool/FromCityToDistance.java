@@ -31,11 +31,11 @@ public class FromCityToDistance {
                 String countryCodeDestino = "pt";
 
                 String urlOrigen = "https://maps.googleapis.com/maps/api/geocode/json?region=" + countryCodeOrigen + "&address=" + cityOrigen +
-                        "&key=AIzaSyDyQeoNFNdLVlcWl1VH9w-7swZrFnhnLnE";
+                        
                 urlOrigen = urlOrigen.replace(" ", "%20");
 
                 String urlRecogida = "https://maps.googleapis.com/maps/api/geocode/json?region=" + countryCodeDestino + "&address=" + cityEntrega +
-                        "&key=AIzaSyDyQeoNFNdLVlcWl1VH9w-7swZrFnhnLnE";
+                       
                 urlRecogida = urlRecogida.replace(" ", "%20");
 
                 InputStream envioOrigen = new URL(urlOrigen).openStream();
@@ -45,11 +45,11 @@ public class FromCityToDistance {
                 countryCodeDestino = getCountry(envioRecogida, countryCodeDestino);
 
                 urlOrigen = "https://maps.googleapis.com/maps/api/geocode/json?region=" + countryCodeOrigen + "&address=" + cityOrigen +
-                        "&key=AIzaSyDyQeoNFNdLVlcWl1VH9w-7swZrFnhnLnE";
+
                 urlOrigen = urlOrigen.replace(" ", "%20");
 
                 urlRecogida = "https://maps.googleapis.com/maps/api/geocode/json?region=" + countryCodeDestino + "&address=" + cityEntrega +
-                        "&key=AIzaSyDyQeoNFNdLVlcWl1VH9w-7swZrFnhnLnE";
+
                 urlRecogida = urlRecogida.replace(" ", "%20");
 
                 envioOrigen = new URL(urlOrigen).openStream();
