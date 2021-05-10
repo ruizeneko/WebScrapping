@@ -1,2 +1,1 @@
-"# WebScrapping-TAP-" 
-"# WebScrapping-TAP-" 
+Projecto de WebScrapping programado en Java para la web de envios de MRW. Para mas informacion consultar el documento anexo: WebScrapping_Informe. Para cualquier duda, contactar con el autor: eneko.ruiz@ehu.eus
