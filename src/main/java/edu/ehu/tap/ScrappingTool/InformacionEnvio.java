@@ -3,16 +3,25 @@ package edu.ehu.tap.ScrappingTool;
 import java.util.Date;
 
 /**
+ * Clase que contendra en sus atributos la informacion para cada envio
  * @author Eneko Ruiz
  */
 public class InformacionEnvio {
 
-    private String numeroAlbaran;
+    private final String numeroAlbaran;
     private Date fechaEnvio;
     private String lugarEnvio;
     private Date fechaEntrega;
     private String lugarEntrega;
 
+    /**
+     * Constructor con todos los parametros
+     * @param numeroAlbaran Numero de albaran del envio
+     * @param fechaEnvio Fecha de envio
+     * @param lugarEnvio Lugar (Ciudad) de envio
+     * @param fechaEntrega Fecha de entrega
+     * @param lugarEntrega Lugar (ciudad) de entrega
+     */
     public InformacionEnvio(String numeroAlbaran, Date fechaEnvio, String lugarEnvio, Date fechaEntrega, String lugarEntrega) {
         this.numeroAlbaran = numeroAlbaran;
         this.fechaEnvio = fechaEnvio;
@@ -21,6 +30,10 @@ public class InformacionEnvio {
         this.lugarEntrega = lugarEntrega;
     }
 
+    /**
+     * Constructor solo a partir del numero de albaran
+     * @param numeroAlbaran Numero de albaran del envio
+     */
     public InformacionEnvio(String numeroAlbaran) {
         this.numeroAlbaran = numeroAlbaran;
     }
@@ -45,11 +58,6 @@ public class InformacionEnvio {
         return lugarEntrega;
     }
 
-    public void setNumeroAlbaran(String numeroAlbaran) {
-        if (this.numeroAlbaran == null) {
-            this.numeroAlbaran = numeroAlbaran;
-        }
-    }
 
     public void setFechaEnvio(Date fechaEnvio) {
         if (this.fechaEnvio == null) {
